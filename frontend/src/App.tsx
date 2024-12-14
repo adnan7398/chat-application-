@@ -1,34 +1,16 @@
 
-import { useRef,useEffect,useState } from 'react';
 import './app.css'
 // more elegant useSocket hook ;
 // persistent connnecttion 
 
 export function App() {
-  // when ever this app compoent is mount i want to conncet to websocket server
-  const inputRef = useRef(); 
-  const [socket , setSocket] = useState();
-
-  function SendMessage(){
-    if(!socket){
-       return ;
-    }
-    const message = inputRef.current.value;
-    //@ts-ignore
-    socket.send(message);
-  }
-    useEffect(()=>{
-      const ws = new WebSocket("ws://localhost:8080");
-      setSocket(ws);
-      ws.onmessage = (ev)=>{
-        alert(ev.data);
-      }
-    },[])
-
   return (
-    <div>
-      <input type="text"  ref = {inputRef} placeholder ="message....." />
-      <button onClick={SendMessage}>send</button>
+    <div className=' h-screen bg-black' >
+      <div className="h-[90vh] bg-red-300"></div>
+      <div className='w-full bg-white flex'>
+        <input className=" rounded flex-1 p-4" name="" id="" />
+        <button className='bg-purple-600 rounded-md text-white p-4' > send Message </button>
+      </div>
     </div>
   )
 }
